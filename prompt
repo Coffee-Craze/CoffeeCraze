@@ -1,0 +1,47 @@
+Create a full-stack monorepo for a decentralized app called "Coffee Craze."
+
+📁 Folder Structure:
+- /frontend: Next.js (App Router), TypeScript, Wagmi, RainbowKit, Tailwind, Framer Motion
+- /contracts: Solidity smart contracts using Hardhat or Foundry + OpenZeppelin libraries
+- /subgraph: Scaffold with The Graph for indexing smart contract events
+- /scripts: Node.js deployment and verification scripts
+
+🛠️ Features to Implement:
+1. **Wallet Connection & Auth**
+   - SIWE (Sign-In with Ethereum) integration
+   - ENS profile linking
+   - EVM wallets only (MetaMask, WalletConnect)
+
+2. **Education Module First**
+   - Quiz system (multiple choice only)
+   - Manual trigger for NFT minting on quiz completion
+   - Badge unlock animations (Framer Motion)
+   - Coin sparkle animation when earning Kofi Coin
+
+3. **Smart Contracts:**
+   - `KofiCoin.sol`: ERC-20, mintable, role-based, UUPS upgradeable
+   - `LearningModuleNFT.sol`: ERC-721 or 1155, soulbound optional, metadata on IPFS
+   - `Marketplace.sol`: Vendor registration, escrow payments, dispute flow
+   - `DAOContract.sol`: Proposal lifecycle, Kofi Coin staking, treasury logic
+
+4. **Marketplace UI**
+   - Product listing
+   - Vendor registration flow (MVP-ready)
+   - Payments via Kofi Coin or stablecoin (USDC/DAI)
+
+5. **DAO Voting Interface**
+   - Modal transitions (Framer Motion)
+   - Proposal creation and voting tied to token holdings
+
+6. **Deployment Setup**
+   - Polygon only for MVP
+   - Add hardhat tasks for deploying and verifying contracts
+   - Scaffold subgraph indexers
+
+7. **Storage**
+   - IPFS integration for certificate metadata and product images
+   - Basic Arweave support hooks (optional)
+
+🔒 Do not include zk-proofs in MVP.
+🌍 Multilingual support deferred.
+🔄 Design with modular upgrade paths for features like staking, ordering quizzes, or Lens integration.
