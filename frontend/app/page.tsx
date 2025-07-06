@@ -1,3 +1,4 @@
+"use client";
 import dynamic from 'next/dynamic';
 const WalletConnect = dynamic(() => import('../components/WalletConnect'), { ssr: false });
 const Quiz = dynamic(() => import('../components/Quiz'), { ssr: false });

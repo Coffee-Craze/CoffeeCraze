@@ -1,32 +1,27 @@
 "use client";
-import { ReactNode } from 'react';
-import { WagmiConfig, createConfig, configureChains, mainnet } from 'wagmi';
-import { getDefaultWallets, RainbowKitProvider } from '@rainbow-me/rainbowkit';
-import { publicProvider } from 'wagmi/providers/public';
-import '@rainbow-me/rainbowkit/styles.css';
+import { ReactNode } from 'react'; // keep only one import
 
-const { chains, publicClient } = configureChains(
-  [mainnet],
-  [publicProvider()]
-);
 
-const { connectors } = getDefaultWallets({
-  appName: 'Coffee Craze',
-  projectId: 'YOUR_PROJECT_ID',
-  chains,
+import { WagmiProvider } from "wagmi";
+import { getDefaultConfig, RainbowKitProvider } from "@rainbow-me/rainbowkit";
+import "@rainbow-me/rainbowkit/styles.css";
+import { mainnet } from "@wagmi/core/chains";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+const config = getDefaultConfig({
+  appName: "Coffee Craze",
+  projectId: "YOUR_PROJECT_ID",
+  chains: [mainnet],
 });
 
-
-export const wagmiConfig = createConfig({
-  autoConnect: true,
-  connectors,
-  publicClient,
-});
+const queryClient = new QueryClient();
 
 export function Providers({ children }: { children: ReactNode }) {
   return (
-    <WagmiConfig config={wagmiConfig}>
-      <RainbowKitProvider chains={chains}>{children}</RainbowKitProvider>
-    </WagmiConfig>
+    <QueryClientProvider client={queryClient}>
+      <WagmiProvider config={config}>
+        <RainbowKitProvider>{children}</RainbowKitProvider>
+      </WagmiProvider>
+    </QueryClientProvider>
   );
 }
