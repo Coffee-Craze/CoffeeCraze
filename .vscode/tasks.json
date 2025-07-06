@@ -1,0 +1,13 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "shell",
+			"label": "Init Next.js frontend with TypeScript, Tailwind, Wagmi, RainbowKit, Framer Motion",
+			"command": "npx create-next-app@latest . --typescript --use-npm && npm install wagmi viem @rainbow-me/rainbowkit tailwindcss postcss autoprefixer framer-motion @ensdomains/ensjs siwe",
+			"args": [],
+			"isBackground": false,
+			"group": "build"
+		}
+	]
+}

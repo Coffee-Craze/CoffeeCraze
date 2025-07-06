@@ -1,0 +1,32 @@
+type Transfer @entity {
+  id: ID!
+  from: Bytes!
+  to: Bytes!
+  value: BigInt!
+}
+
+type Mint @entity {
+  id: ID!
+  to: Bytes!
+  value: BigInt!
+}
+
+type NFTMint @entity {
+  id: ID!
+  to: Bytes!
+  tokenId: BigInt!
+  uri: String!
+}
+
+type Product @entity {
+  id: ID!
+  name: String!
+  price: BigInt!
+  owner: Bytes!
+}
+
+type Proposal @entity {
+  id: ID!
+  title: String!
+  votes: BigInt!
+}

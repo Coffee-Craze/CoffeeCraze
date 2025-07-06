@@ -1,0 +1,87 @@
+specVersion: 0.0.4
+schema:
+  file: ./schema.graphql
+dataSources:
+
+  - kind: ethereum/contract
+    name: KofiCoin
+    network: matic
+    source:
+      address: "<KOFICOIN_ADDRESS>"
+      abi: KofiCoin
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - Transfer
+        - Mint
+      abis:
+        - name: KofiCoin
+          file: ./abis/KofiCoin.json
+      eventHandlers:
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
+        - event: Mint(address,uint256)
+          handler: handleMint
+      file: ./src/mapping.ts
+
+  - kind: ethereum/contract
+    name: LearningModuleNFT
+    network: matic
+    source:
+      address: "<LEARNINGMODULENFT_ADDRESS>"
+      abi: LearningModuleNFT
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - NFTMint
+      abis:
+        - name: LearningModuleNFT
+          file: ./abis/LearningModuleNFT.json
+      eventHandlers:
+        - event: NFTMinted(address,uint256,string)
+          handler: handleNFTMinted
+      file: ./src/mapping.ts
+
+  - kind: ethereum/contract
+    name: Marketplace
+    network: matic
+    source:
+      address: "<MARKETPLACE_ADDRESS>"
+      abi: Marketplace
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - Product
+      abis:
+        - name: Marketplace
+          file: ./abis/Marketplace.json
+      eventHandlers:
+        - event: OwnershipTransferred(address,address)
+          handler: handleMarketplaceOwnershipTransferred
+      file: ./src/mapping.ts
+
+  - kind: ethereum/contract
+    name: DAOContract
+    network: matic
+    source:
+      address: "<DAOCONTRACT_ADDRESS>"
+      abi: DAOContract
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - Proposal
+      abis:
+        - name: DAOContract
+          file: ./abis/DAOContract.json
+      eventHandlers:
+        - event: OwnershipTransferred(address,address)
+          handler: handleDAOOwnershipTransferred
+      file: ./src/mapping.ts
